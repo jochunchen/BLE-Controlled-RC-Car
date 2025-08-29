@@ -1,26 +1,22 @@
 # BLE-Controlled-RC-Car
+This repository contains the full code for a four-wheel remote-controlled car that is controlled via Bluetooth Low Energy (BLE) using a custom mobile application. The project is an excellent example of combining embedded systems (ESP32-S3) with mobile application development (SwiftUI) to create an IoT-based remote-controlled device.
 
-## Project Overview
-This project demonstrates a four-wheel remote-controlled car using an ESP32-S3-DevKitM-1 as its core. The vehicle is controlled remotely via Bluetooth Low Energy (BLE) using a custom mobile application, showcasing a practical application of IoT and remote control technology.
+## Project Components
+This project consists of two main parts: the embedded system (car) and the mobile application (controller).
 
-## Key Components
-- Microcontroller: ESP32-S3-DevKitM-1
-- Motor Driver: L298N motor driver module
-- Motors: Four DC geared motors
-- Power Supply: Six 1.5V batteries (9V total)
-- Connectivity: Bluetooth Low Energy (BLE)
-- Control Interface: Custom mobile app
+# 1. Embedded System (Arduino Code)
+The Arduino code runs on the ESP32-S3-DevKitM-1, serving as the car's brain. It handles the following functions:
+- BLE Communication: It acts as a BLE peripheral, advertising a specific service and characteristics to which a mobile device can connect.
+- Motor Control: It uses an L298N motor driver to control the speed and direction of four DC geared motors.
+- Command Interpretation: It receives integer commands (0-4) from the mobile app and translates them into motor actions (Forward, Backward, Left, Right, Stop).
 
-## Principles and Methodology
-The system is built on a simple hardware-software architecture. The ESP32-S3 serves as the central processing unit, handling wireless communication and command decoding. The L298N module translates the ESP32's digital signals into motor movements, controlling the speed and direction of the car. The entire system is powered by a series of batteries, providing a stable voltage for the motors.
+# 2. Mobile Application (SwiftUI Code)
+The Swift code is a mobile application developed with SwiftUI for iOS. It acts as the remote controller for the car. The application's main features include:
+- BLE Management: It scans for and connects to the ESP32's BLE service.
+- User Interface: It provides a simple, intuitive interface with directional buttons to control the car.
+- Signal Transmission: When a user presses a button, the app sends a corresponding integer command to the ESP32 via a BLE characteristic.
 
-### The control process is straightforward:
-1. A user sends a command (e.g., "move forward") from the mobile app.
-2. The command is transmitted to the ESP32 via BLE.
-3. The ESP32 decodes the command and sends a corresponding signal to the L298N driver.
-4. The L298N adjusts the power to the motors, causing the car to move as instructed.
+## How It Works
+The system operates on a client-server model over Bluetooth. The ESP32 is the server, waiting for a connection and commands. The mobile app is the client, which connects to the ESP32 and sends control signals.
 
-## Implementation Process
-1. Hardware Assembly: All components were physically connected and configured to ensure proper operation.
-2. Software Development: The code for the ESP32 was written to manage BLE communication and control logic. The mobile app was also developed to provide the user interface.
-3. Testing and Debugging: The entire system was rigorously tested to ensure the car responded correctly and reliably to all commands.
+When a button is pressed on the app, a specific integer (e.g., 0 for forward) is sent. The ESP32's onWrite callback function receives this integer and calls the appropriate motor control function (forward(), backward(), etc.), causing the car to move. The loop() function continuously checks for new commands to ensure immediate and responsive control.
