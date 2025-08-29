@@ -4,13 +4,13 @@ This repository contains the full code for a four-wheel remote-controlled car th
 ## Project Components
 This project consists of two main parts: the embedded system (car) and the mobile application (controller).
 
-# 1. Embedded System (Arduino Code)
+### 1. Embedded System (Arduino Code)
 The Arduino code runs on the ESP32-S3-DevKitM-1, serving as the car's brain. It handles the following functions:
 - BLE Communication: It acts as a BLE peripheral, advertising a specific service and characteristics to which a mobile device can connect.
 - Motor Control: It uses an L298N motor driver to control the speed and direction of four DC geared motors.
 - Command Interpretation: It receives integer commands (0-4) from the mobile app and translates them into motor actions (Forward, Backward, Left, Right, Stop).
 
-# 2. Mobile Application (SwiftUI Code)
+### 2. Mobile Application (SwiftUI Code)
 The Swift code is a mobile application developed with SwiftUI for iOS. It acts as the remote controller for the car. The application's main features include:
 - BLE Management: It scans for and connects to the ESP32's BLE service.
 - User Interface: It provides a simple, intuitive interface with directional buttons to control the car.
