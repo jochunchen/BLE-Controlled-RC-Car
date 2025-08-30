@@ -1,4 +1,4 @@
-# BLE-Controlled-RC-Car
+# BLE Controlled RC Car
 This repository contains the full code for a four-wheel remote-controlled car that is controlled via Bluetooth Low Energy (BLE) using a custom mobile application. The project is an excellent example of combining embedded systems (ESP32-S3) with mobile application development (SwiftUI) to create an IoT-based remote-controlled device.
 
 ## Project Components
