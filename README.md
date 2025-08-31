@@ -19,4 +19,4 @@ The Swift code is a mobile application developed with SwiftUI for iOS. It acts a
 ## How It Works
 The system operates on a client-server model over Bluetooth. The ESP32 is the server, waiting for a connection and commands. The mobile app is the client, which connects to the ESP32 and sends control signals.
 
-When a button is pressed on the app, a specific integer (e.g., 0 for forward) is sent. The ESP32's onWrite callback function receives this integer and calls the appropriate motor control function (forward(), backward(), etc.), causing the car to move. The loop() function continuously checks for new commands to ensure immediate and responsive control.
+When a button is pressed on the app, a specific integer (e.g., 0 for forward) is sent. The ESP32's `onWrite` callback function receives this integer and calls the appropriate motor control function (`forward()`, `backward()`, etc.), causing the car to move. The `loop()` function continuously checks for new commands to ensure immediate and responsive control.
